@@ -54,17 +54,6 @@ const url = 'https://launchlibrary.net/1.3/launch';
 const trigger = 'Send us a your Stan ID';
 const bot = new Bot(token, {polling: true});
 
-
-const prepareData = (body) => {
- const launches = JSON.parse(body).launches;
- return launches.filter((launch) => launch !== undefined)
-  .map((launch) => `${launch.name} on ${launch.net}`)
-  .join('\n\n');
-};
-
-function checkChatID(){
-  
-}
 var opts = {
   reply_markup: JSON.stringify(
     {
@@ -95,6 +84,7 @@ var textArray = [
   'Hint 2'
 ];
 var randomNumber = Math.floor(Math.random()*textArray.length);
+
 bot.onText(/\/hint/, (msg) => {
   bot.sendMessage(msg.chat.id, 'Copy your contestant chat id and click send.')
 	.then(payload => {
